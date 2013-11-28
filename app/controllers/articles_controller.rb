@@ -2,6 +2,7 @@ class ArticlesController < ContentController
   before_filter :login_required, :only => [:preview]
   before_filter :auto_discovery_feed, :only => [:show, :index]
   before_filter :verify_config
+#  before_filter :merge
 
   layout :theme_layout, :except => [:comment_preview, :trackback]
 
@@ -11,6 +12,8 @@ class ArticlesController < ContentController
   }
 
   helper :'admin/base'
+
+
 
   def index
     respond_to do |format|

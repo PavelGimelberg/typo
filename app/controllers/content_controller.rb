@@ -16,6 +16,16 @@ class ContentController < ApplicationController
     end
   end
 
+   def merge
+	debugger
+        @first_article = Article.find(9)
+        @second_article = Article.find(1)
+        @new_article = Article.create! ({ :title => 'Merged Article' , :body => @first_article.body + @second_article.body})
+        #@new_article.merge(@first_article, @second_article)
+        redirect_to '/admin/content/edit/' + @new_article.id.to_s
+   end
+
+
   include LoginSystem
   before_filter :setup_themer
   helper :theme

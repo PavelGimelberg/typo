@@ -27,6 +27,14 @@ class Admin::ContentController < Admin::BaseController
     new_or_edit
   end
 
+   def merge
+	@first_article = Article.find(params[:id])
+        @second_article = Article.find(params[:q])
+        @new_article = Article.create! ({ :title => 'Merged Article' , :body => @first_article.body + @second_article.body})
+        #@new_article.merge(@first_article, @second_article)
+        redirect_to '/admin/content/edit/' + @new_article.id.to_s
+   end
+
   def edit
     @article = Article.find(params[:id])
     unless @article.access_by? current_user

@@ -35,6 +35,8 @@ class Article < Content
       find :all, :conditions => {:state => ["presumed_spam", "spam"]}
     end
 
+
+
   end
 
   with_options(:conditions => { :published => true }, :order => 'created_at DESC') do |this|
@@ -70,6 +72,9 @@ class Article < Content
       self.settings = {}
     end
   end
+
+  #def merge (a, b)
+  #end
 
   def set_permalink
     return if self.state == 'draft'
@@ -466,4 +471,7 @@ class Article < Content
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
   end
+
+
+
 end

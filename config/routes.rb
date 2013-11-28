@@ -110,6 +110,7 @@ Rails.application.routes.draw do
      resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
+    match "admin/content/edit/merge/1", :to => "content#merge", :as => 'merge'
   end
 
   # default

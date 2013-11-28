@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   match ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
 
   match 'admin', :to  => 'admin/dashboard#index', :format => false, :as => :admin_dashboard
+  match 'admin/content/merge', :to => 'admin/content#merge'
 
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
@@ -110,7 +111,8 @@ Rails.application.routes.draw do
      resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
-    match "admin/content/edit/merge/1", :to => "content#merge", :as => 'merge'
+    #match "admin/content/edit/", :to => "content#merge", :as => 'merge'
+
   end
 
   # default

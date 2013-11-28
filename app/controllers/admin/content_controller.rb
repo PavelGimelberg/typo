@@ -27,12 +27,10 @@ class Admin::ContentController < Admin::BaseController
     new_or_edit
   end
 
-   def merge
-	@first_article = Article.find(params[:id])
-        @second_article = Article.find(params[:q])
-        @new_article = Article.create! ({ :title => 'Merged Article' , :body => @first_article.body + @second_article.body})
-        #@new_article.merge(@first_article, @second_article)
-        redirect_to '/admin/content/edit/' + @new_article.id.to_s
+    def merge
+	#debugger
+        Article.merge(params[:id], params[:merge_with])
+        redirect_to '/admin/content'
    end
 
   def edit

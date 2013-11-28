@@ -7,7 +7,10 @@
     <%= form_tag(merge_path) do %>
     <%= label_tag(:q, "Merge:") %>
     <%= text_field_tag("merge_with", :q) %>
-    <%= submit_tag("Merge") %>
+    <%= if current_user.admin?
+                 submit_tag("Merge")
+               else submit_tag("Merge", :disabled => true )
+               end %>
    <% end %>
    </div>    
  </div>

@@ -17,7 +17,7 @@ class ContentController < ApplicationController
   end
 
    def merge
-	debugger
+	#debugger
         @first_article = Article.find(9)
         @second_article = Article.find(1)
         @new_article = Article.create! ({ :title => 'Merged Article' , :body => @first_article.body + @second_article.body})

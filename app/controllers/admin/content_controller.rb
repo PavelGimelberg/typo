@@ -27,7 +27,7 @@ class Admin::ContentController < Admin::BaseController
     new_or_edit
   end
 
-    def merge
+    def merge_with
 	#debugger
         article = Article.find_by_id(params[:id])
         article.merge_with(params[:merge_with])

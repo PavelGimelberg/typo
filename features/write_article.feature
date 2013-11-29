@@ -18,17 +18,4 @@ Feature: Write Articles
     When I follow "Foobar"
     Then I should see "Lorem Ipsum"
 
-  Scenario: Successfully write articles2
-    Given I am on the new article page
-    When I fill in "article_title" with "Foobar2"
-    And I fill in "article__body_and_extended_editor" with "Lorem Ipsum2"
-    And I press "Publish"
-
-  Scenario: Successfully merge articles
-    Given I am on the edit page
-    Then I should see "Merge Articles"
-    And I fill in "merge_with" with "2"
-    And I press "Merge"
-
-
-
+ 

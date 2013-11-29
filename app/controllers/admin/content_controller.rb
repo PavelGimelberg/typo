@@ -30,6 +30,7 @@ class Admin::ContentController < Admin::BaseController
     def merge
 	#debugger
         Article.merge(params[:id], params[:merge_with])
+        flash[:notice] = _("Articles successfully merged!")
         redirect_to '/admin/content'
    end
 

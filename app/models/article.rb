@@ -421,38 +421,22 @@ def last_draft(article_id)
     user.admin? || user_id == user.id
   end
 
-  def merge_with(other_article_id)
-      #debugger
-      article_1 = self
-      article_2 = Article.find_by_id(other_article_id)
-
-      merged_article = Article.create(:title => article_1.title,
-                                      :author => article_1.author,
-                                      :body => article_1.body + article_2.body,
-                                      :user_id => article_1.user_id,
-				      :published => true,
-                                      :allow_comments => true)
-      comments_1 = Feedback.find_all_by_article_id(article_1.id)
-      comments_2 = Feedback.find_all_by_article_id(article_2.id)
-
-      unless comments_1.blank?
-        comments_1.each do |comment|
-          comment.article_id = merged_article.id
-          comment.save
-        end
+   def merge_with(other_article_id)
+      tomerge = Article.find_by_id(other_article_id)
+      if not self.id or not tomerge.id
+      return false
       end
 
-      unless comments_2.blank?
-        comments_2.each do |comment|
-          comment.article_id = merged_article.id
-          comment.save
-        end
-      end
+      self.body = self.body + "\n\n" + tomerge.body
+      self.comments << tomerge.comments
+      self.save!
 
-      Article.destroy(article_1.id)
-      Article.destroy(article_2.id)
-      merged_article
-    end    
+      tomerge = Article.find_by_id(other_article_id)
+      tomerge.destroy
+
+      return true
+    end
+
 
   protected
 

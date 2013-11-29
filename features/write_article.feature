@@ -30,3 +30,5 @@ Feature: Write Articles
     And I fill in "merge_with" with "2"
     And I press "Merge"
 
+
+

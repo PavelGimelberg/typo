@@ -99,6 +99,7 @@ class Article < Content
 
   class << self
     def merge(article_1_id, article_2_id)
+      debugger
       article_1 = Article.find_by_id(article_1_id)
       article_2 = Article.find_by_id(article_2_id)
 

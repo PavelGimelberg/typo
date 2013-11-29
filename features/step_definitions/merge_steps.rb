@@ -16,7 +16,8 @@ Given /I am logged in as "(.*?)" with pass "(.*?)"$/ do |user, pass|
 end
 
 Given /the articles with ids "(\d+)" and "(\d+)" were merged$/ do |id1, id2|
-    Article.merge(id1, id2)
+  article = Article.find_by_id(id1)
+  article.merge_with(id2)
 end
 
 Then /"(.*?)" should be author of (\d+) articles$/ do |user, count|

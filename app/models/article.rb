@@ -424,7 +424,7 @@ def last_draft(article_id)
    def merge_with(other_article_id)
       tomerge = Article.find_by_id(other_article_id)
       if not self.id or not tomerge.id
-      return false
+        return false
       end
 
       self.body = self.body + "\n\n" + tomerge.body
